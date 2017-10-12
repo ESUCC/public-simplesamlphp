@@ -15,7 +15,7 @@ services:
       - CONFIG_TIMEZONE=America/Chicago
       - CONFIG_SHOWERRORS=true
       - CONFIG_ERRORREPORTING=false
-      - CONFIG_ADMINPROTECTINDEXPAGE=true
+      - CONFIG_ADMINPROTECTINDEXPAGE=false
       - CONFIG_ADMINPROTECTMETADATA=false
       - CONFIG_DEBUG=FALSE
       - CONFIG_LOGGINGLEVEL=NOTICE
@@ -31,7 +31,7 @@ services:
       - CONFIG_MEMCACHESTOREPREFIX=simplesamlphp
       - CONFIG_MEMCACHESTORESERVERS=    'memcache_store.servers' => array(\n        array(\n             array('hostname' => 'idpa01-memcached'),\n             array('hostname' => 'idpa02-memcached'),\n        ),\n        array(\n             array('hostname' => 'idpb01-memcached'),\n             array('hostname' => 'idpb02-memcached'),\n        ),
       - OPENLDAP_TLS_REQCERT=never
-      - WWW_INDEX=core/frontpage_welcome.php
+      - WWW_INDEX=core/authenticate.php?as=nebraskacloud-auth
     volumes:
       - /opt/docker/volumes/idp-simplesamlphp/config/:/var/simplesamlphp/config/:Z
       - /opt/docker/volumes/idp-simplesamlphp/attributemap/:/var/simplesamlphp/cert/:Z
