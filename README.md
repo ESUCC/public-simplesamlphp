@@ -1,8 +1,19 @@
-# Federated SSO Tutorial
-[![](https://img.shields.io/badge/Project-Public-blue.svg)]() [![](https://img.shields.io/badge/Version-1.14.16-blue.svg)](https://opensource.org/licenses/MIT) ![GitHub Open Issues](https://img.shields.io/github/issues/ESUCC/ssp-demo-config.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+#### IdP Configuration Repository
+[![](https://img.shields.io/badge/Project-Public-blue.svg)]() [![](https://img.shields.io/badge/Version-1.14.16-blue.svg)](https://opensource.org/licenses/MIT) ![GitHub Open Issues](https://img.shields.io/github/issues/ESUCC/ssp-demo-config.svg)
 
+To dive right in, please visit the [Wiki]
 
-### These documents will cover the following:
+> The purpose of these documents are to allow sufficent
+> knowledge of the current state SSO design, and future goals.
+> Please contribute by expressing your ideas, concerns, plans, etc
+
+> The SimpleSAMLphp installation is automated, as the focus is towards configuration.
+> The automated install is completely public, generic, and contains no
+> organization specific data or configurations.
+
+> You can view the repository here to see what the automated install is doing.
+
+The [Wiki] covers:
   - Explaination for 5 Minute install of a demo nebraskaCloud IdP, https://demo-idp.nebraskacloud.org
     - Explaination and installation of the nebraskaCloud multiAuth module
     - Installation of the alias extension
@@ -22,36 +33,11 @@
     - Blocking logins due to insufficent claims (ex. missing mail, uid)
   - Installation of a claims viewer SP for testing
 
-### Requirements:
-
-  - Some host with Docker, Docker Compose, and git installed. CentOS7 will be used in these documents.
-  - Production hosts will require systemd in lieu of Docker Compose
-  - (recommended) Some private GIT repository
-  - (optional) Access to this demo nebraskaCloud repository. Click here to request access.
-
-> The purpose of these documents are to allow sufficent
-> knowledge of the current state SSO design, and future goals.
-> Please contribute by expressing your ideas, concerns, plans, etc
-
-> The SimpleSAMLphp installation is automated, as the focus is towards configuration.
-> The automated install is completely public, generic, and contains no
-> organization specific data or configurations.
-
-> You can view the repository here to see what the automated install is doing.
-
 ### Bird's Eye Overview
+All aspects below overview are covered in the [Wiki]:
 
-### Start Here
-Either select a section from above in the Documentation directory, or click here to start at the beginning.
-
-### In the end, you will have the following:
-
-License
-----
-MIT
-
----
-Last updated by [Venator-Fox] (Adam Zheng) on 12 October 2017
+![Birds-Eye-Image][Birds-Eye-Image]
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-   [Venator-Fox]: <https://github.com/Venator-Fox>
+   [Wiki]: https://github.com/ESUCC/ssp-demo-config/wiki
+   [Birds-Eye-Image]: https://github.com/ESUCC/ssp-demo-config/blob/master/birds-eye-overview.png "Birds Eye Overview"
