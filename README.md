@@ -35,8 +35,9 @@ The [Wiki] covers:
 
 ### Bird's Eye Overview
 All aspects below overview are covered in the [Wiki]:
+
 ![Birds-Eye-Image][Birds-Eye-Image]
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
    [Wiki]: https://github.com/ESUCC/ssp-demo-config/wiki
-   [Birds-Eye-Image]: https://github.com/ESUCC/ssp-demo-config/blob/feature/documentation/birds-eye-overview.png "Birds Eye Overview"
+   [Birds-Eye-Image]: https://github.com/ESUCC/ssp-demo-config/blob/master/birds-eye-overview.png "Birds Eye Overview"
