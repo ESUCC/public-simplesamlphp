@@ -11,7 +11,7 @@ To dive right in, please visit the [Wiki]
 > The automated install is completely public, generic, and contains no
 > organization specific data or configurations.
 
-> You can view the repository here to see what the automated install is doing.
+> You can optionally view [docker-simplesamlphp] if you are interested to see what the automated install is doing.
 
 The [Wiki] covers:
   - Explaination for 5 Minute install of a demo nebraskaCloud IdP, https://demo-idp.nebraskacloud.org
@@ -38,6 +38,12 @@ All aspects below overview are covered in the [Wiki]:
 
 ![Birds-Eye-Image][Birds-Eye-Image]
 
+### Contributing
+
+Please view [CONTRIBUTING.md] for contribution guidelines.
+
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
    [Wiki]: https://github.com/ESUCC/ssp-demo-config/wiki
+   [docker-simplesamlphp]: https://github.com/Venator-Fox/docker-simplesamlphp/blob/master/1.14.16/Dockerfile
    [Birds-Eye-Image]: https://github.com/ESUCC/ssp-demo-config/blob/master/birds-eye-overview.png "Birds Eye Overview"
+   [CONTRIBUTING.md]: CONTRIBUTING.md
