@@ -3,6 +3,8 @@
 Please create an issue before making a change. 
 This repository utilizes the GitFlow branching model.
 
+https://github.com/ESUCC/ssp-demo-config/network
+
 ## Merge Request Process
 
 1. The `development` and `master` branches will always contain working code.
