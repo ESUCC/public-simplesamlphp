@@ -4,7 +4,7 @@ services:
 
   idp-simplesamlphp:
     container_name: idp-simplesamlphp
-    image: venatorfox/simplesamlphp:1.14.16
+    image: venatorfox/simplesamlphp:1.14.17
     environment:
       - CONFIG_BASEURLPATH=https://demo-idp.nebraskacloud.org/simplesaml/
       - CONFIG_AUTHADMINPASSWORD={SSHA256}MjJSiMlkQLa+fqI+CmQ1x1oUJ7OGucYpznKxBBHpgfC+Oh+7B9vgGw==

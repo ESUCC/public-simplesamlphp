@@ -1,5 +1,5 @@
 #### IdP Configuration Repository
-[![](https://img.shields.io/badge/Project-Public-blue.svg)]() [![](https://img.shields.io/badge/Version-1.14.16-blue.svg)](https://opensource.org/licenses/MIT) ![GitHub Open Issues](https://img.shields.io/github/issues/ESUCC/ssp-demo-config.svg)
+[![](https://img.shields.io/badge/Project-Public-blue.svg)]() [![](https://img.shields.io/badge/Version-1.14.17-blue.svg)](https://github.com/ESUCC/ssp-demo-config/network) ![GitHub Open Issues](https://img.shields.io/github/issues/ESUCC/ssp-demo-config.svg)
 
 To dive right in, please visit the [Wiki]
 
@@ -44,6 +44,6 @@ Please view [CONTRIBUTING.md] for contribution guidelines.
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
    [Wiki]: https://github.com/ESUCC/ssp-demo-config/wiki
-   [docker-simplesamlphp]: https://github.com/Venator-Fox/docker-simplesamlphp/blob/master/1.14.16/Dockerfile
+   [docker-simplesamlphp]: https://github.com/Venator-Fox/docker-simplesamlphp/blob/master/1.14.17/Dockerfile
    [Birds-Eye-Image]: https://github.com/ESUCC/ssp-demo-config/blob/master/birds-eye-overview.png "Birds Eye Overview"
    [CONTRIBUTING.md]: CONTRIBUTING.md
