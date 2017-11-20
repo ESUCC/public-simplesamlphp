@@ -10,34 +10,64 @@ $config = array(
         'core:AdminPassword',
     ),
 
-    'nebraskacloud-auth' => array (
-        'multiauth:MultiAuth',
 
-        'sources' => array(
-            'esu-100' => array(
-                'text' => array(
-                    'en' => 'Educational Service Unit 100',
-                ),
-            ),
-            'esu-999' => array(
-                'text' => array(
-                    'en' => 'Educational Service Unit 999',
-                ),
-            ),
-        ),
-    ),
-
-    'esu-100' => array(
+    // An authentication source which can authenticate against both SAML 2.0
+    // and Shibboleth 1.3 IdPs.
+    'default-sp' => array(
         'saml:SP',
-        'entityID' => 'https://idp.esu100.org/simplesaml/module.php/saml/sp/metadata.php/ESU100-MultiAuth',
-        'idp' => 'https://idp.esu100.org/simplesaml/saml2/idp/metadata.php',
+
+        // The entity ID of this SP.
+        // Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
+        'entityID' => null,
+
+        // The entity ID of the IdP this should SP should contact.
+        // Can be NULL/unset, in which case the user will be shown a list of available IdPs.
+        'idp' => null,
+
+        // The URL to the discovery service.
+        // Can be NULL/unset, in which case a builtin discovery service will be used.
+        'discoURL' => null,
+
+        /*
+         * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
+         *
+         * Uncomment the following option to start using SHA-256 for your signatures.
+         * Currently, SimpleSAMLphp defaults to SHA-1, which has been deprecated since
+         * 2011, and will be disallowed by NIST as of 2014. Please refer to the following
+         * document for more information:
+         *
+         * http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf
+         *
+         * If you are uncertain about identity providers supporting SHA-256 or other
+         * algorithms of the SHA-2 family, you can configure it individually in the
+         * IdP-remote metadata set for those that support it. Once you are certain that
+         * all your configured IdPs support SHA-2, you can safely remove the configuration
+         * options in the IdP-remote metadata set and uncomment the following option.
+         *
+         * Please refer to the hosted SP configuration reference for more information.
+          */
+        //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+
+        /*
+         * The attributes parameter must contain an array of desired attributes by the SP.
+         * The attributes can be expressed as an array of names or as an associative array
+         * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.
+         * The metadata will then be created as follows:
+         * <md:RequestedAttribute FriendlyName="friendlyName" Name="name" />
+         */
+        /*'name' => array(
+             'en' => 'A service',
+             'no' => 'En tjeneste',
+          ),
+
+          'attributes' => array(
+            'attrname' => 'urn:oid:x.x.x.x',
+        ),*/
+        /*'attributes.required' => array (
+            'urn:oid:x.x.x.x',
+        ),*/
     ),
 
-    'esu-999' => array(
-        'saml:SP',
-        'entityID' => 'https://idp.esu999.org/simplesaml/module.php/saml/sp/metadata.php/ESU999-MultiAuth',
-        'idp' => 'https://idp.esu999.org/simplesaml/saml2/idp/metadata.php',
-    ),
 
     /*
     'example-sql' => array(
@@ -176,6 +206,10 @@ $config = array(
         // which additional data permissions to request from user
         // see http://developers.facebook.com/docs/authentication/permissions/ for the full list
         // 'req_perms' => 'email,user_birthday',
+        // Which additional user profile fields to request.
+        // When empty, only the app-specific user id and name will be returned
+        // See https://developers.facebook.com/docs/graph-api/reference/v2.6/user for the full list
+        // 'user_fields' => 'email,birthday,third_party_id,name,first_name,last_name',
     ),
     */
 
@@ -183,10 +217,13 @@ $config = array(
     // LinkedIn OAuth Authentication API.
     // Register your application to get an API key here:
     //  https://www.linkedin.com/secure/developer
+    // Attributes definition:
+    //  https://developer.linkedin.com/docs/fields
     'linkedin' => array(
         'authlinkedin:LinkedIn',
         'key' => 'xxxxxxxxxxxxxxxx',
         'secret' => 'xxxxxxxxxxxxxxxx',
+        'attributes' => 'id,first-name,last-name,headline,summary,specialties,picture-url,email-address',
     ),
     */
 
@@ -283,6 +320,9 @@ $config = array(
         // This is an array with one or more attribute names. Any of the attributes in
         // the array may match the value the username.
         'search.attributes' => array('uid', 'mail'),
+
+        // Additional LDAP filters appended to the search attributes
+        'search.filter' => '(objectclass=inetorgperson)',
 
         // The username & password the SimpleSAMLphp should bind to before searching. If
         // this is left as NULL, no bind will be performed before searching.
