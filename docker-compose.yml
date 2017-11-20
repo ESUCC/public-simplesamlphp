@@ -4,7 +4,7 @@ services:
 
   idp-simplesamlphp:
     container_name: idp-simplesamlphp
-    image: venatorfox/simplesamlphp:1.14.17
+    image: venatorfox/simplesamlphp:1.15.0
     environment:
       - CONFIG_BASEURLPATH=https://demo-idp.nebraskacloud.org/simplesaml/
       - CONFIG_AUTHADMINPASSWORD={SSHA256}MjJSiMlkQLa+fqI+CmQ1x1oUJ7OGucYpznKxBBHpgfC+Oh+7B9vgGw==
@@ -34,14 +34,13 @@ services:
       - WWW_INDEX=core/authenticate.php?as=nebraskacloud-auth
     volumes:
       - /opt/docker/volumes/idp-simplesamlphp/config/:/var/simplesamlphp/config/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/attributemap/:/var/simplesamlphp/cert/:Z
       - /opt/docker/volumes/idp-simplesamlphp/cert/:/var/simplesamlphp/cert/:Z
       - /opt/docker/volumes/idp-simplesamlphp/dictionaries/:/var/simplesamlphp/dictionaries/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/log/:/var/simplesamlphp/log:Z
-      - /opt/docker/volumes/idp-simplesamlphp/metadata/:/var/simplesamlphp/metadata:Z
-      - /opt/docker/volumes/idp-simplesamlphp/modules/:/var/simplesamlphp/modules:Z
-      - /opt/docker/volumes/idp-simplesamlphp/templates/:/var/simplesamlphp/templates:Z
-      - /opt/docker/volumes/idp-simplesamlphp/www/:/var/simplesamlphp/www:Z
+      - /opt/docker/volumes/idp-simplesamlphp/log/:/var/simplesamlphp/log/:Z
+      - /opt/docker/volumes/idp-simplesamlphp/metadata/:/var/simplesamlphp/metadata/:Z
+      - /opt/docker/volumes/idp-simplesamlphp/modules/:/var/simplesamlphp/modules/:Z
+      - /opt/docker/volumes/idp-simplesamlphp/templates/:/var/simplesamlphp/templates/:Z
+      - /opt/docker/volumes/idp-simplesamlphp/www/:/var/simplesamlphp/www/:Z
     restart: always
 
   idpa01-memcached:
