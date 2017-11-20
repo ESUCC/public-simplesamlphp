@@ -45,5 +45,5 @@ Please view [CONTRIBUTING.md] for contribution guidelines.
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
    [Wiki]: https://github.com/ESUCC/public-simplesamlphp/wiki
    [docker-simplesamlphp]: https://github.com/Venator-Fox/docker-simplesamlphp/blob/master/1.15.0/Dockerfile
-   [Birds-Eye-Image]: https://github.com/ESUCC/docker-simplesamlphp/blob/master/wiki-resources/images/birds-eye-overview.png "Birds Eye Overview"
+   [Birds-Eye-Image]: https://github.com/ESUCC/public-simplesamlphp/blob/master/wiki-resources/images/birds-eye-overview.png "Birds Eye Overview"
    [CONTRIBUTING.md]: CONTRIBUTING.md
