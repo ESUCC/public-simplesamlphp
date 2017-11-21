@@ -58,8 +58,8 @@ services:
     image: memcached
     restart: always
 
-  idpb01-memcached:
-    container_name: idpb01-memcached
+  idpb02-memcached:
+    container_name: idpb02-memcached
     image: memcached
     restart: always
 
