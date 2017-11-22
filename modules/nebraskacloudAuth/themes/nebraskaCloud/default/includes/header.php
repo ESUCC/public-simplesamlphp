@@ -127,6 +127,8 @@ if($onLoad !== '') {
   <div id="logo"></div>
 </header>
 
+<div id="wrap"><br></div>
+
 <div id="wrap" class="container-fluid">
 	<?php
 
