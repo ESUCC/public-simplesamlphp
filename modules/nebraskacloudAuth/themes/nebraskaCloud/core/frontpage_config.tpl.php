@@ -26,7 +26,7 @@ if ($this->data['isadmin']) {
 
 <div style="float:right">
 	<code style="background: white; background: #f5f5f5; border: 1px dotted #bbb; padding: 1em;  color: #555" ><?php 
-		echo $this->data['directory'] . ' (' . $this->data['version'] . ')'; 
+        echo "SimpleSAMLphp " . $this->data['version'];
 	?></code>
 </div>
 
