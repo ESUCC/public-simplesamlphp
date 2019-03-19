@@ -1,10 +1,10 @@
-version: '2'
+version: '3.5'
 
 services:
 
-  idp01-simplesamlphp:
-    container_name: idp01-simplesamlphp
-    image: venatorfox/simplesamlphp:1.15.0
+  demo-simplesamlphp01:
+    container_name: demo-simplesamlphp01
+    image: venatorfox/simplesamlphp:1.17.1
     environment:
       - CONFIG_BASEURLPATH=https://demo-idp.nebraskacloud.org/simplesaml/
       - CONFIG_AUTHADMINPASSWORD={SSHA256}MjJSiMlkQLa+fqI+CmQ1x1oUJ7OGucYpznKxBBHpgfC+Oh+7B9vgGw==
@@ -14,7 +14,7 @@ services:
       - CONFIG_LANGUAGEDEFAULT=en
       - CONFIG_TIMEZONE=America/Chicago
       - CONFIG_SHOWERRORS=true
-      - CONFIG_ERRORREPORTING=false
+      - CONFIG_ERRORREPORTING=true
       - CONFIG_ADMINPROTECTINDEXPAGE=false
       - CONFIG_ADMINPROTECTMETADATA=false
       - CONFIG_DEBUG=FALSE
@@ -29,54 +29,83 @@ services:
       - CONFIG_THEMEUSE=nebraskacloudAuth:nebraskaCloud
       - CONFIG_STORETYPE=memcache
       - CONFIG_MEMCACHESTOREPREFIX=simplesamlphp
-      - CONFIG_MEMCACHESTORESERVERS=    'memcache_store.servers' => array(\n        array(\n             array('hostname' => 'idpa01-memcached'),\n             array('hostname' => 'idpa02-memcached'),\n        ),\n        array(\n             array('hostname' => 'idpb01-memcached'),\n             array('hostname' => 'idpb02-memcached'),\n        ),
+      - CONFIG_MEMCACHESTORESERVERS=    'memcache_store.servers' => [\n        [\n             ['hostname' => 'demo-memcacheda01'],\n             ['hostname' => 'demo-memcacheda02'],\n        ],\n        [\n             ['hostname' => 'demo-memcachedb01'],\n             ['hostname' => 'demo-memcachedb02'],\n        ],
       - OPENLDAP_TLS_REQCERT=never
 #     - WWW_INDEX=core/authenticate.php?as=nebraskacloud-auth
+      - OPENLDAP_TLS_REQCERT=always
+      - MTA_NULLCLIENT=true
+      - POSTFIX_MYHOSTNAME=demo-idp.nebraskacloud.org
+      - POSTFIX_MYORIGIN=$$mydomain
+      - POSTFIX_RELAYHOST=$$mydomain
+      - POSTFIX_INETINTERFACES=loopback-only
+      - POSTFIX_MYDESTINATION=
     volumes:
-      - /opt/docker/volumes/idp-simplesamlphp/config/:/var/simplesamlphp/config/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/cert/:/var/simplesamlphp/cert/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/locales/:/var/simplesamlphp/locales/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/log/:/var/simplesamlphp/log/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/metadata/:/var/simplesamlphp/metadata/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/modules/:/var/simplesamlphp/modules/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/templates/:/var/simplesamlphp/templates/:Z
-      - /opt/docker/volumes/idp-simplesamlphp/www/:/var/simplesamlphp/www/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/config/:/var/simplesamlphp/config/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/cert/:/var/simplesamlphp/cert/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/locales/:/var/simplesamlphp/locales/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/log/:/var/simplesamlphp/log/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/metadata/:/var/simplesamlphp/metadata/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/modules/:/var/simplesamlphp/modules/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/templates/:/var/simplesamlphp/templates/:Z
+      - /srv/docker/volumes/demo-simplesamlphp01/www/:/var/simplesamlphp/www/:Z
     restart: always
+    networks:
+      backend:
+        ipv4_address: 172.20.31.10
 
-  idpa01-memcached:
-    container_name: idpa01-memcached
-    image: memcached
+  demo-memcacheda01:
+    container_name: demo-memcacheda01
+    image: memcached:latest
     restart: always
+    networks:
+      backend:
+        ipv4_address: 172.20.31.20
 
-  idpa02-memcached:
-    container_name: idpa02-memcached
-    image: memcached
+  demo-memcacheda02:
+    container_name: demo-memcacheda02
+    image: memcached:latest
     restart: always
+    networks:
+      backend:
+        ipv4_address: 172.20.31.21
 
-  idpb01-memcached:
-    container_name: idpb01-memcached
-    image: memcached
+  demo-memcachedb01:
+    container_name: demo-memcachedb01
+    image: memcached:latest
     restart: always
+    networks:
+      backend:
+        ipv4_address: 172.20.31.30
 
-  idpb02-memcached:
-    container_name: idpb02-memcached
-    image: memcached
+  demo-memcachedb02:
+    container_name: demo-memcachedb02
+    image: memcached:latest
     restart: always
+    networks:
+      backend:
+        ipv4_address: 172.20.31.31
 
-  idp-haproxy:
-    container_name: idp-haproxy
-    image: million12/haproxy:1.7.9
+  demo-haproxy:
+    container_name: demo-haproxy
+    image: million12/haproxy:latest
     depends_on:
-      - idp01-simplesamlphp
-#     - idp02-simplesamlphp
-    links:
-      - idp01-simplesamlphp
-#     - idp02-simplesamlphp
+      - demo-simplesamlphp01
     ports:
       - 80:80
       - 443:443
     volumes:
-      - /opt/docker/volumes/idp-haproxy:/etc/haproxy:Z
+      - /srv/docker/volumes/demo-haproxy:/etc/haproxy/:Z
     restart: always
     cap_add:
       - NET_ADMIN
+    networks:
+      backend:
+        ipv4_address: 172.20.31.40
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.31.0/26
