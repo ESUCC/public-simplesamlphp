@@ -24,7 +24,7 @@ if (array_key_exists('pageid', $this->data)) {
 		'page' => $this->data['pageid']
 	);
 
-	SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
+	SimpleSAML\Module::callHooks('htmlinject', $hookinfo);
 }
 // - o - o - o - o - o - o - o - o - o - o - o - o -
 
@@ -126,6 +126,8 @@ if($onLoad !== '') {
 <header>
   <div id="logo"></div>
 </header>
+
+<div id="wrap"><br></div>
 
 <div id="wrap" class="container-fluid">
 	<?php
