@@ -6,9 +6,9 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 <div class="row">
   <div class="col-md-4 col-md-offset-4" id="idpSelection">
-  <center><h2><?php echo $this->t('{nebraskacloudAuth:multiauth:select_source_header}'); ?></h2></center>
+  <center><h2><?php echo $this->t('{multiauth:multiauth:select_source_header}'); ?></h2></center>
 
-  <p><center><?php echo $this->t('{nebraskacloudAuth:multiauth:select_source_text}'); ?></center></p>
+  <p><center><?php echo $this->t('{multiauth:multiauth:select_source_text}'); ?></center></p>
 
   <form id="idPForm" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="get">
     <input type="hidden" name="AuthState" value="<?php echo htmlspecialchars($this->data['authstate']); ?>" />
