@@ -95,11 +95,19 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             } else {
                 // Use the authtype as the css class
                 $authconfig = $authsources->getArray($source, null);
-                if (!array_key_exists(0, $authconfig) || !is_string($authconfig[0])) {
+                // isaacson 08/08/2017 change array_key_exists to isset() to avoid exception if $authconfig is null
+                if (!isset($authconfig[0]) || !is_string($authconfig[0])) {
                     $css_class = "";
                 } else {
                     $css_class = str_replace(":", "-", $authconfig[0]);
                 }
+            }
+            
+            // isaacson 08/09/2017 Add alias to allow multiple listings/names that direct to the same authsource
+            if (array_key_exists('alias', $info)) {
+                $alias = $info['alias'];
+            } else {
+                $alias = NULL;
             }
 
             $this->sources[] = [
@@ -107,6 +115,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
                 'text' => $text,
                 'help' => $help,
                 'css_class' => $css_class,
+                'alias' => $alias,
             ];
         }
     }
